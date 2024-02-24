@@ -179,3 +179,60 @@ Finally, for more convenience, I added linting scripts to `package.json`.
   }
 }
 ```
+
+## Adding Pre-Commit Hooks
+
+```
+[10:18 PM | sorbet] $ npm install -D husky lint-staged
+
+added 55 packages, and audited 197 packages in 1s
+
+60 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+[10:19 PM | sorbet] $ npx husky init
+```
+
+I added a `lint-staged` script to `package.json`:
+
+```
+{
+  "scripts": {
+    "other:script": "some command",
+    "lint-staged": "lint-staged"
+  }
+}
+```
+
+I added a `.lintstagedrc.cjs` for `lint-staged` configuration.
+
+```
+module.exports = {
+  '**/*.{js,cjs}': ['eslint --fix', 'prettier --write --ignore-unknown'],
+  '**.*': 'prettier --write --ignore-unknown',
+};
+```
+
+This will lint all JavaScript files with ESLint **FIRST** then format JavaScript
+file with Prettier **SECOND** per Prettier
+[recommendations](https://prettier.io/docs/en/install.html#git-hooks).
+
+For all other files that Prettier knows how to format, it will format those.
+
+Finally, I added `npm run lint-staged` to the `.husky/pre-commit` file. Now,
+whenever I commit, this happens:
+
+```
+[10:27 PM | sorbet] $ git commit -m "add formatter scripts to package.json"
+
+> sorbet@0.0.0 lint-staged
+> lint-staged
+
+✔ Preparing lint-staged...
+✔ Running tasks for staged files...
+✔ Applying modifications from tasks...
+✔ Cleaning up temporary files...
+[main 6dc650b] add formatter scripts to package.json
+ 1 file changed, 2 insertions(+)
+```
