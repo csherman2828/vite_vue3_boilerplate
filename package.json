@@ -8,6 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "prepare": "husky",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "lint-staged": "lint-staged"
