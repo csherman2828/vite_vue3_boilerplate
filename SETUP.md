@@ -1,51 +1,51 @@
-# How Sorbet Repo Environment was Set Up
+# How vite_vue3_boilerplate Repo Environment was Set Up
 
 ## Setting up Vite Vue3 Project
 
 ```
-[09:42 PM | sorbet] $ npm create vite@latest
+[09:42 PM | vite_vue3_boilerplate] $ npm create vite@latest
 Need to install the following packages:
 create-vite@5.2.1
 Ok to proceed? (y) y
-✔ Project name: … sorbet
+✔ Project name: … vite_vue3_boilerplate
 ✔ Select a framework: › Vue
 ✔ Select a variant: › JavaScript
 
-Scaffolding project in /home/csherman2828/projects/sorbet/sorbet...
+Scaffolding project in /home/csherman2828/projects/vite_vue3_boilerplate/vite_vue3_boilerplate...
 
 Done. Now run:
 
-  cd sorbet
+  cd vite_vue3_boilerplate
   npm install
   npm run dev
 ```
 
 ## Moving Things Around
 
-I was already in a directory called `sorbet`, but the process made a nested
-directory called `sorbet` as well. So I just used `mv` to remove the extra
-nested directory.
+I was already in a directory called `vite_vue3_boilerplate`, but the process
+made a nested directory called `vite_vue3_boilerplate` as well. So I just used
+`mv` to remove the extra nested directory.
 
 ```
-[09:42 PM | sorbet] $ ls
-sorbet
-[09:43 PM | sorbet] $ mv sorbet/* ./
-[09:43 PM | sorbet] $ ls
-README.md  index.html  package.json  public  sorbet  src  vite.config.js
-[09:43 PM | sorbet] $ cd sorbet/
-[09:43 PM | sorbet] $ ls
-[09:43 PM | sorbet] $ cd ..
-[09:43 PM | sorbet] $ rm -fr sorbet/
-[09:43 PM | sorbet] $ ls
+[09:42 PM | vite_vue3_boilerplate] $ ls
+vite_vue3_boilerplate
+[09:43 PM | vite_vue3_boilerplate] $ mv vite_vue3_boilerplate/* ./
+[09:43 PM | vite_vue3_boilerplate] $ ls
+README.md  index.html  package.json  public  vite_vue3_boilerplate  src  vite.config.js
+[09:43 PM | vite_vue3_boilerplate] $ cd vite_vue3_boilerplate/
+[09:43 PM | vite_vue3_boilerplate] $ ls
+[09:43 PM | vite_vue3_boilerplate] $ cd ..
+[09:43 PM | vite_vue3_boilerplate] $ rm -fr vite_vue3_boilerplate/
+[09:43 PM | vite_vue3_boilerplate] $ ls
 README.md  index.html  package.json  public  src  vite.config.js
 ```
 
 ## Setting Up Git
 
 ```
-[09:43 PM | sorbet] $ git init
-Initialized empty Git repository in /home/csherman2828/projects/sorbet/.git/
-[09:43 PM | sorbet] $ git status
+[09:43 PM | vite_vue3_boilerplate] $ git init
+Initialized empty Git repository in /home/csherman2828/projects/vite_vue3_boilerplate/.git/
+[09:43 PM | vite_vue3_boilerplate] $ git status
 On branch main
 
 No commits yet
@@ -62,8 +62,8 @@ Untracked files:
         vite.config.js
 
 nothing added to commit but untracked files present (use "git add" to track)
-[09:43 PM | sorbet] $ code .
-[09:43 PM | sorbet] $ git status
+[09:43 PM | vite_vue3_boilerplate] $ code .
+[09:43 PM | vite_vue3_boilerplate] $ git status
 On branch main
 
 No commits yet
@@ -80,8 +80,8 @@ Untracked files:
         vite.config.js
 
 nothing added to commit but untracked files present (use "git add" to track)
-[09:44 PM | sorbet] $ git add .
-[09:44 PM | sorbet] $ git commit -m "init vite vue3 project"
+[09:44 PM | vite_vue3_boilerplate] $ git add .
+[09:44 PM | vite_vue3_boilerplate] $ git commit -m "init vite vue3 project"
 [main (root-commit) 6337ba5] init vite vue3 project
  12 files changed, 1131 insertions(+)
  create mode 100644 .gitignore
@@ -105,7 +105,7 @@ container characters ("()", "[]", etc.). It keeps code style consistent and has
 nothing to say about the semantics of a program (see ESLint setup for more).
 
 ```
-[09:50 PM | sorbet] $ npm i -D prettier
+[09:50 PM | vite_vue3_boilerplate] $ npm i -D prettier
 
 added 1 package, and audited 30 packages in 496ms
 
@@ -139,7 +139,7 @@ enforce format. A linter and a formatter have distinct jobs. See more here:
 First, I ran this convenient script to set up ESLint:
 
 ```
-[09:57 PM | sorbet] $ npm init @eslint/config
+[09:57 PM | vite_vue3_boilerplate] $ npm init @eslint/config
 ✔ How would you like to use ESLint? · problems
 ✔ What type of modules does your project use? · esm
 ✔ Which framework does your project use? · vue
@@ -160,7 +160,7 @@ added 111 packages, and audited 141 packages in 3s
   run `npm fund` for details
 
 found 0 vulnerabilities
-Successfully created .eslintrc.cjs file in /home/csherman2828/projects/sorbet
+Successfully created .eslintrc.cjs file in /home/csherman2828/projects/vite_vue3_boilerplate
 ```
 
 To make ESLint and Prettier play nice, it is
@@ -183,7 +183,7 @@ Finally, for more convenience, I added linting scripts to `package.json`.
 ## Adding Pre-Commit Hooks
 
 ```
-[10:18 PM | sorbet] $ npm install -D husky lint-staged
+[10:18 PM | vite_vue3_boilerplate] $ npm install -D husky lint-staged
 
 added 55 packages, and audited 197 packages in 1s
 
@@ -191,7 +191,7 @@ added 55 packages, and audited 197 packages in 1s
   run `npm fund` for details
 
 found 0 vulnerabilities
-[10:19 PM | sorbet] $ npx husky init
+[10:19 PM | vite_vue3_boilerplate] $ npx husky init
 ```
 
 I added a `lint-staged` script to `package.json`:
@@ -224,9 +224,9 @@ Finally, I added `npm run lint-staged` to the `.husky/pre-commit` file. Now,
 whenever I commit, this happens:
 
 ```
-[10:27 PM | sorbet] $ git commit -m "add formatter scripts to package.json"
+[10:27 PM | vite_vue3_boilerplate] $ git commit -m "add formatter scripts to package.json"
 
-> sorbet@0.0.0 lint-staged
+> vite_vue3_boilerplate@0.0.0 lint-staged
 > lint-staged
 
 ✔ Preparing lint-staged...
